@@ -19,9 +19,15 @@ export class AuthService {
 	) {}
 
 	async getNewToken(refreshToken: string) {
-		const result = await this.jwt.verifyAsync(refreshToken)
+		let result
+		try {
+			result = await this.jwt.verifyAsync(refreshToken)
+		} catch (e) {
+			console.error(e)
+			throw new UnauthorizedException('Invalid refresh token')
+		}
 		console.log(result)
-		if (result) throw new UnauthorizedException('Invalid refresh token')
+		if (!result) throw new UnauthorizedException('Invalid refresh token')
 
 		const user = await this.prisma.user.findUnique({
 			where: {
@@ -39,6 +45,12 @@ export class AuthService {
 
 	async login(dto: AuthDto) {
 		const user = await this.validateUser(dto)
+		const tokens = await this.issueToken(user.id)
+
+		return {
+			user: this.returnUserFields(user),
+			...tokens
+		}
 	}
 
 	private async validateUser(dto: AuthDto) {
@@ -91,11 +103,11 @@ export class AuthService {
 			expiresIn: '1h'
 		})
 
-		const refreshToket = this.jwt.sign(data, {
+		const refreshToken = this.jwt.sign(data, {
 			expiresIn: '7d'
 		})
 
-		return { accessToken, refreshToket }
+		return { accessToken, refreshToken }
 	}
 
 	private returnUserFields(user: User) {
