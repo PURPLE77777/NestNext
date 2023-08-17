@@ -31,7 +31,8 @@ module.exports = {
 		'no-constant-condition': 'warn',
 		'no-empty': 'warn',
 		'prefer-const': 'warn',
-		'no-console': 1,
+		'no-empty-function': 'off',
+		'no-console': 0,
 		'prettier/prettier': 0
 	}
 }

@@ -26,7 +26,7 @@ export class AuthService {
 			console.error(e)
 			throw new UnauthorizedException('Invalid refresh token')
 		}
-		console.log(result)
+
 		if (!result) throw new UnauthorizedException('Invalid refresh token')
 
 		const user = await this.prisma.user.findUnique({
