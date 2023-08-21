@@ -11,17 +11,9 @@ export class StatisticsService {
 
 	async getMain(userId: number) {
 		const user = await this.userService.byId(userId, {
-			orders: {
-				select: {
-					items: true
-				}
-			}
-		})
-
-		const totalAmount = await this.prisma.order.aggregate({
-			where: {
-				userId
-			}
+			orders: true,
+			reviews: true,
+			favourites: true
 		})
 
 		return [
@@ -36,10 +28,11 @@ export class StatisticsService {
 			{
 				name: 'Favourites',
 				value: user.favourites.length
+			},
+			{
+				name: 'Total amount',
+				value: 1000
 			}
-			// {
-			//     name:
-			// }
 		]
 	}
 }
