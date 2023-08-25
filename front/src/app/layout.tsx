@@ -21,7 +21,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body>
-				<div className='h-full'>
+				<div className='flex h-full flex-col'>
 					<Header />
 					<main className='flex h-full flex-row'>
 						<Menu />

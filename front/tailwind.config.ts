@@ -8,8 +8,8 @@ const config: Config = {
 	],
 	theme: {
 		colors: {
-			lightDark: '#192028',
-			primOrange: '#EE9515',
+			lightDark: '#161d25',
+			primOrange: '#ff9900',
 			primBlue: '#4965A2',
 			primYellow: '#FBD867'
 		}
