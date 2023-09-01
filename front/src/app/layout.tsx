@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 import './globals.css'
-import Main from '@/components/main/Main'
+import GlobalClientProvider from '@/providers/GlobalClient.provider'
 
 // import { Inter } from 'next/font/google'
 
@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 	},
 	generator: 'Next.js',
 	applicationName: 'PURPLESHOP',
+	referrer: 'origin-when-cross-origin',
 	keywords: ['Next.js', 'React', 'TypeScript'],
 	authors: [{ name: 'PURPLE77777', url: 'https://github.com/PURPLE77777' }],
 	colorScheme: 'dark',
@@ -34,7 +35,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body>
-				<Main />
+				<GlobalClientProvider>{children}</GlobalClientProvider>
 			</body>
 		</html>
 	)

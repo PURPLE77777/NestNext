@@ -1,6 +1,8 @@
+'use client'
+
 import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { FC, PropsWithChildren, useEffect } from 'react'
 
 import { useActions } from '@/hooks/useActions'
@@ -19,8 +21,10 @@ const AuthProvider: FC<PropsWithChildren<TypeAuthProvider>> = ({
 	const { user } = useAuth()
 	const { checkAuth, logout } = useActions()
 
-	const { pathname } = useRouter()
-	console.log(isOnlyUser)
+	const pathname = usePathname()
+
+	console.log(`AuthProvider -> isOnlyUser: ${isOnlyUser}`)
+
 	useEffect(() => {
 		const accessToken = getAccessToken()
 		if (accessToken) checkAuth()

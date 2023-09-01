@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router'
+'use client'
+
+import { usePathname, useRouter } from 'next/navigation'
 import { FC, PropsWithChildren } from 'react'
 
 import { useAuth } from '@/hooks/useAuth'
@@ -14,9 +16,11 @@ const CheckRole: FC<PropsWithChildren<ICheckRole>> = ({
 
 	const router = useRouter()
 
+	const pathname = usePathname()
+
 	if (user && isOnlyUser) return <>{children}</>
 
-	router.pathname === '/auth' && router.replace('/auth')
+	pathname === '/auth' && router.replace('/auth')
 	return null
 }
 
