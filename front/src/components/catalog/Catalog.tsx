@@ -1,17 +1,11 @@
-'use client'
-
 import Image from 'next/image'
-import { useState } from 'react'
-
-import { ISection } from '@/constants/categories.constant'
 
 const Catalog = () => {
-	const [categories, setCategories] = useState<ISection[]>([])
 	const iconsDimensions = 25
 
 	return (
-		<div className='flex w-full flex-col bg-[#f2f2f5]'>
-			<div></div>
+		<div className='flex flex-grow flex-col'>
+			{/* bg-[#f2f2f5] */}
 			<div className='flex'>
 				<h1 className='text-2xl font-bold text-[#303541]'>
 					Popular categories

@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
+import { FC, PropsWithChildren } from 'react'
 
 import './globals.css'
-import GlobalClientProvider from '@/providers/GlobalClient.provider'
+import App from '@/components/App'
 
 // import { Inter } from 'next/font/google'
 
@@ -27,16 +28,14 @@ export const metadata: Metadata = {
 	}
 }
 
-export default function RootLayout({
-	children
-}: {
-	children: React.ReactNode
-}) {
+const RootLayout: FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<html lang='en'>
 			<body>
-				<GlobalClientProvider>{children}</GlobalClientProvider>
+				<App>{children}</App>
 			</body>
 		</html>
 	)
 }
+
+export default RootLayout

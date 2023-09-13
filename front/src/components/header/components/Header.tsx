@@ -2,13 +2,9 @@
 
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { BiHeart } from 'react-icons/bi'
 import { IoSearch } from 'react-icons/io5'
-import {
-	MdOutlineNotificationsNone,
-	MdOutlineShoppingCart
-} from 'react-icons/md'
 
+import PersonActivities from './PersonActivities'
 import { ISection, sections } from '@/constants/categories.constant'
 import Icon from '@/providers/Icon.provider'
 
@@ -60,31 +56,7 @@ const Header = () => {
 				</div>
 			</div>
 
-			<div className='flex flex-row items-center'>
-				<div className='flex cursor-pointer items-center rounded-xl p-2 text-[#fff] hover:bg-primOrange hover:text-[#000]'>
-					<Icon size={`${iconsDimensions}px`}>
-						<BiHeart />
-					</Icon>
-				</div>
-				<div className='ml-3 flex cursor-pointer items-center rounded-xl p-2 text-[#fff] hover:bg-primOrange hover:text-[#000]'>
-					<Icon size={`${iconsDimensions}px`}>
-						<MdOutlineShoppingCart />
-					</Icon>
-				</div>
-				<div className='ml-3 flex cursor-pointer items-center rounded-xl p-2 text-[#fff] hover:bg-primOrange hover:text-[#000]'>
-					<Icon size={`${iconsDimensions}px`}>
-						<MdOutlineNotificationsNone />
-					</Icon>
-				</div>
-				<div className='ml-3 cursor-pointer'>
-					<Image
-						src={'/avatar.svg'}
-						alt='profile'
-						width={iconsDimensions * 2}
-						height={iconsDimensions * 2}
-					/>
-				</div>
-			</div>
+			<PersonActivities />
 		</header>
 	)
 }

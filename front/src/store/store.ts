@@ -9,13 +9,13 @@ import {
 	persistReducer,
 	persistStore
 } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
 
+import { createPersistStorage } from './storage'
 import { userSlice } from './user/user.slice'
 
 const persistConfig = {
 	key: 'purpleshop',
-	storage,
+	storage: createPersistStorage(),
 	whitelist: ['card']
 }
 
