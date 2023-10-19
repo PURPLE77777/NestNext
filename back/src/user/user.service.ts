@@ -38,6 +38,21 @@ export class UserService {
 		return user
 	}
 
+	async getFavourites(id: number) {
+		const user = await this.prisma.user.findUnique({
+			where: {
+				id
+			},
+			include: {
+				favourites: true
+			}
+		})
+
+		if (!user) throw new NotFoundException('User not found')
+
+		return user.favourites
+	}
+
 	async updateProfile(id: number, dto: UserDto) {
 		const isSameUser = await this.prisma.user.findUnique({
 			where: {

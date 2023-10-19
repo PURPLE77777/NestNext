@@ -1,10 +1,12 @@
 import Image from 'next/image'
 
+import ProductCatalog from './components/ProductCatalog'
+
 const Catalog = () => {
 	const iconsDimensions = 25
 
 	return (
-		<div className='flex flex-grow flex-col'>
+		<div className='flex flex-1 flex-col overflow-auto'>
 			{/* bg-[#f2f2f5] */}
 			<div className='flex'>
 				<h1 className='text-2xl font-bold text-[#303541]'>
@@ -18,7 +20,7 @@ const Catalog = () => {
 					height={iconsDimensions}
 				/>
 			</div>
-			<div className='flex items-center'>
+			<div className='flex'>
 				<h1 className='text-2xl font-bold text-[#303541]'>Hot deals</h1>
 				<Image
 					className='ml-2'
@@ -28,6 +30,7 @@ const Catalog = () => {
 					height={iconsDimensions}
 				/>
 			</div>
+			<ProductCatalog />
 		</div>
 	)
 }

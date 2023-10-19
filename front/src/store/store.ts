@@ -1,28 +1,19 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import {
-	FLUSH,
-	PAUSE,
-	PERSIST,
-	PURGE,
-	REGISTER,
-	REHYDRATE,
-	persistReducer,
-	persistStore
-} from 'redux-persist'
+import { persistReducer, persistStore } from 'redux-persist'
 
+import { categorySlice } from './category/category.slice'
 import { createPersistStorage } from './storage'
 import { userSlice } from './user/user.slice'
 
 const persistConfig = {
 	key: 'purpleshop',
 	storage: createPersistStorage(),
-	whitelist: ['card']
+	whitelist: ['user', 'categories']
 }
 
 const rootReducer = combineReducers({
-	// cart: cartSlice.reducer
-	// carousel: carouselSlice.reducer
-	user: userSlice.reducer
+	user: userSlice.reducer,
+	categories: categorySlice.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -31,16 +22,17 @@ export const store = configureStore({
 	reducer: persistedReducer,
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
-			serializableCheck: {
-				ignoredActions: [
-					FLUSH,
-					REHYDRATE,
-					PAUSE,
-					PERSIST,
-					PURGE,
-					REGISTER
-				]
-			}
+			serializableCheck: false
+			// serializableCheck: {
+			// 	ignoredActions: [
+			// 		FLUSH,
+			// 		REHYDRATE,
+			// 		PAUSE,
+			// 		PERSIST,
+			// 		PURGE,
+			// 		REGISTER
+			// 	]
+			// }
 		})
 })
 

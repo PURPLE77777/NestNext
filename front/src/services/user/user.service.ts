@@ -1,5 +1,6 @@
 import { IUserDto } from './dto/user.dto'
 import { instance } from '@/api/api.interceptor'
+import { IProduct } from '@/types/product.interface'
 import { IUser } from '@/types/user.interface'
 
 const USERS = 'users/'
@@ -17,6 +18,13 @@ class UserService {
 			url: USERS + 'profile',
 			method: 'put',
 			data: dto
+		})
+	}
+
+	async getFavourites() {
+		return instance<IProduct[]>({
+			url: USERS + 'favourites',
+			method: 'get'
 		})
 	}
 

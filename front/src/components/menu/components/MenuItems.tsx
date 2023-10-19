@@ -3,27 +3,32 @@
 import clsx from 'clsx'
 import { SyntheticEvent, useEffect, useState } from 'react'
 
-import {
-	IChapter,
-	ISection,
-	chapters,
-	sections
-} from '@/constants/categories.constant'
+import { IChapter, chapters } from '@/constants/categories.constant'
+import { useCategory } from '@/hooks/selectors/useCategory'
+import { useActions } from '@/hooks/useActions'
 import Icon from '@/providers/Icon.provider'
+import { ICategory } from '@/types/category.interface'
 
 export const MenuItems = () => {
-	const [categories, setCategories] = useState<ISection[]>([])
+	const { categories } = useCategory()
+	const { getAllCategories, selectCategory, deselectCategory } = useActions()
 	const [allChapters, setAllChapters] = useState<IChapter[]>([])
 	const [selectedChapter, setSelectedChapter] = useState('')
+	const { selectedCategory } = useCategory()
 
 	useEffect(() => {
-		setCategories(sections)
 		setAllChapters(chapters)
 		setSelectedChapter(chapters[0].name)
-	}, [])
+		getAllCategories()
+	}, [allChapters])
 
 	const chapterClickHandler = (e: SyntheticEvent) => {
 		setSelectedChapter((e.target as HTMLDivElement).textContent!)
+		deselectCategory()
+	}
+
+	const categoryHandler = (category: ICategory) => {
+		selectCategory(category)
 	}
 
 	return (
@@ -48,13 +53,19 @@ export const MenuItems = () => {
 					</div>
 					{selectedChapter === allChapters[0].name &&
 						chapter.name === allChapters[0].name &&
-						categories.map(category => (
+						categories?.map(category => (
 							<div
-								className='flex items-center p-2 text-[#fff]'
+								className={clsx(
+									'flex cursor-pointer items-center rounded-xl p-2 text-[#fff] hover:bg-[#2d3c4c]',
+									selectedCategory &&
+										selectedCategory.name ===
+											category.name &&
+										'underline'
+								)}
 								key={`category-menu-${category.name}`}
+								onClick={() => categoryHandler(category)}
 							>
-								<div className='p-[10px]'></div>
-								<div className='pl-2 text-sm'>
+								<div className='ml-[20px] pl-2 text-sm '>
 									{category.name}
 								</div>
 							</div>

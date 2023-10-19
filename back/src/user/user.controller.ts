@@ -4,15 +4,14 @@ import {
 	Get,
 	Param,
 	Patch,
-	Post,
 	Put,
 	UsePipes,
 	ValidationPipe
 } from '@nestjs/common'
-import { UserService } from './user.service'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { UserDto } from './user.dto'
+import { UserService } from './user.service'
 
 @Controller('users')
 export class UserController {
@@ -32,7 +31,13 @@ export class UserController {
 	}
 
 	@Auth()
-	@Patch('profile/favourites/:productId')
+	@Get('favourites')
+	async getFavourites(@CurrentUser('id') id: number) {
+		return this.userService.getFavourites(id)
+	}
+
+	@Auth()
+	@Patch('favourites/:productId')
 	async toggleFavourite(
 		@CurrentUser('id') id: number,
 		@Param('productId') productId: string

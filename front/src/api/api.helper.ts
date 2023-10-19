@@ -3,11 +3,9 @@ export const getContentType = () => ({
 })
 
 export const errorCatch = (error: any): string => {
-	const message = error?.reponse?.data?.message
-
-	return message
-		? typeof error.response.data.messsage === 'object'
-			? message[0]
-			: message
+	return error.response
+		? error.response.data
+		: error.request
+		? error.request
 		: error.message
 }

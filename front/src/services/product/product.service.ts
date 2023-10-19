@@ -4,7 +4,7 @@ import { IProduct } from '@/types/product.interface'
 
 const PRODUCTS = 'products/'
 
-class Productervice {
+class ProductService {
 	async getAll(queryData = {} as IFiltersDto) {
 		return instance<IProduct[]>({
 			url: PRODUCTS,
@@ -27,7 +27,7 @@ class Productervice {
 		})
 	}
 
-	async getCategory(categorySlug: string) {
+	async getByCategory(categorySlug: string) {
 		return instance<IProduct[]>({
 			url: PRODUCTS + `by-category/${categorySlug}`,
 			method: 'get'
@@ -64,6 +64,6 @@ class Productervice {
 	}
 }
 
-const productService = new Productervice()
+const productService = new ProductService()
 
 export default productService

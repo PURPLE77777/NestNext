@@ -1,7 +1,7 @@
 import { usePathname, useRouter } from 'next/navigation'
 import { FC, PropsWithChildren } from 'react'
 
-import { useAuth } from '@/hooks/useAuth'
+import { useAuth } from '@/hooks/selectors/useAuth'
 
 interface ICheckRole {}
 

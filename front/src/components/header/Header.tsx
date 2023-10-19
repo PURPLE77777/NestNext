@@ -4,16 +4,20 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { IoSearch } from 'react-icons/io5'
 
-import PersonActivities from './PersonActivities'
-import { ISection, sections } from '@/constants/categories.constant'
+import PersonActivities from './components/PersonActivities'
+import { useCategory } from '@/hooks/selectors/useCategory'
+import { useActions } from '@/hooks/useActions'
 import Icon from '@/providers/Icon.provider'
 
 const Header = () => {
 	const [value, setValue] = useState<string>('')
-	const [categories, setCategories] = useState<ISection[]>([])
+	const { categories, selectedCategory } = useCategory()
+	const { selectCategory, deselectCategory } = useActions()
 	const iconsDimensions = 25
 
-	useEffect(() => setCategories(sections), [])
+	useEffect(() => {
+		selectedCategory ? setValue(selectedCategory.name) : setValue('')
+	}, [selectedCategory])
 
 	return (
 		<header className='flex flex-row justify-between bg-lightDark p-3'>
@@ -30,7 +34,7 @@ const Header = () => {
 					<input
 						className='rounded-bl-lg rounded-tl-lg border-2 border-solid border-[#444d55] bg-[#222f3e] px-3 py-2 outline-none'
 						placeholder='Search...'
-					></input>
+					/>
 					<select
 						className='appearance-none border-2 border-l-0 border-r-0 border-solid border-[#444d55] bg-[#222f3e] pl-2 pr-6 text-[#fff]'
 						value={value}
@@ -38,11 +42,21 @@ const Header = () => {
 							setValue(e.target.value)
 						}}
 					>
-						<option value=''>All categories</option>
-						{categories.map(category => (
+						<option
+							value=''
+							onClick={() => {
+								deselectCategory()
+							}}
+						>
+							All categories
+						</option>
+						{categories?.map(category => (
 							<option
 								key={`header-${category.name}`}
 								value={category.name}
+								onClick={() => {
+									selectCategory(category)
+								}}
 							>
 								{category.name}
 							</option>

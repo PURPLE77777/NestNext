@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { Injectable, NotFoundException } from '@nestjs/common'
 import { Prisma } from '@prisma/client'
+import { returnCategoryObject } from 'src/category/return-category.object'
 import { PaginationService } from 'src/pagination/pagination.service'
 import { PrismaService } from 'src/prisma.service'
 import { EnumProductSort, GetAllProductDto } from './dto/get-all.product.dto'
@@ -125,17 +126,17 @@ export class ProductService {
 
 		const products = await this.prisma.product.findMany({
 			where: prismaSearchTermFilter,
+			include: {
+				category: {
+					select: returnCategoryObject
+				}
+			},
 			orderBy: prismaSort,
 			skip,
 			take: perPage
 		})
 
-		return {
-			products,
-			length: await this.prisma.product.count({
-				where: prismaSearchTermFilter
-			})
-		}
+		return products
 	}
 
 	async update(id: number, dto: ProductDto) {

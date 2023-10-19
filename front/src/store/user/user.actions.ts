@@ -4,9 +4,10 @@ import { IAuthResponse, IEmailPassword } from './user.interface'
 import { errorCatch } from '@/api/api.helper'
 import { removeFromStorage } from '@/services/auth/auth.helper'
 import authService from '@/services/auth/auth.service'
+import { AUTH } from '@/services/base.constant'
 
-export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
-	'auth/register',
+export const registration = createAsyncThunk<IAuthResponse, IEmailPassword>(
+	`${AUTH}/register`,
 	async (data, thunkApi) => {
 		try {
 			const response = await authService.main('register', data)
@@ -18,7 +19,7 @@ export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
 )
 
 export const login = createAsyncThunk<IAuthResponse, IEmailPassword>(
-	'auth/login',
+	`${AUTH}/login`,
 	async (data, thunkApi) => {
 		try {
 			const response = await authService.main('login', data)
@@ -34,16 +35,15 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 })
 
 export const checkAuth = createAsyncThunk<IAuthResponse>(
-	'auth/check-auth',
+	`${AUTH}/check-auth`,
 	async (_, thunkApi) => {
 		try {
 			const response = await authService.getNewTokens()
-			return response.data
+			return response
 		} catch (error) {
 			if (errorCatch(error) === 'jwt expired') {
 				thunkApi.dispatch(logout())
 			}
-
 			return thunkApi.rejectWithValue(error)
 		}
 	}

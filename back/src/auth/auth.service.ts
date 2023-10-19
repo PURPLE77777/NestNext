@@ -44,6 +44,7 @@ export class AuthService {
 	}
 
 	async login(dto: AuthDto) {
+		console.log('login', dto)
 		const user = await this.validateUser(dto)
 		const tokens = await this.issueToken(user.id)
 
@@ -70,6 +71,7 @@ export class AuthService {
 	}
 
 	async register(dto: AuthDto) {
+		console.log('register', dto)
 		const oldUser = await this.prisma.user.findUnique({
 			where: {
 				email: dto.email

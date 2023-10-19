@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { Injectable, NotFoundException } from '@nestjs/common'
 import { PrismaService } from 'src/prisma.service'
+import { getTimeByDate } from 'src/utils/getFormatTimeByDate'
 import { CategoryDto } from './category.dto'
 import { returnCategoryObject } from './return-category.object'
 
@@ -35,6 +36,12 @@ export class CategoryService {
 	}
 
 	async getAll() {
+		console.log(
+			getTimeByDate(new Date()),
+			await this.prisma.category.findMany({
+				select: returnCategoryObject
+			})
+		)
 		return this.prisma.category.findMany({
 			select: returnCategoryObject
 		})

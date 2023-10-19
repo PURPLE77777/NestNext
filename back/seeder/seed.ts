@@ -30,10 +30,16 @@ const createProducts = async (quantity: number) => {
 				name: productName,
 				slug: faker.helpers.slugify(productName).toLowerCase(),
 				description: faker.commerce.productDescription(),
-				price: +faker.commerce.price({ min: 10, max: 999, dec: 0 }),
+				price: +faker.commerce.price({ min: 10, max: 1500, dec: 2 }),
 				images: Array.from({
 					length: faker.number.int({ min: 2, max: 6 })
-				}).map(() => faker.image.url({ width: 500, height: 500 })),
+				}).map(() =>
+					faker.image.urlLoremFlickr({
+						width: 200,
+						height: 200,
+						category: 'technics'
+					})
+				),
 				category: {
 					create: {
 						name: categoryName,
