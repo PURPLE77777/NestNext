@@ -1,8 +1,10 @@
-import { ReviewDto } from './dto/review.dto'
-import { instance } from '@/api/api.interceptor'
-import { IReview } from '@/types/review.interface'
+import { REVIEWS } from '@services/base.constant'
 
-const REVIEWS = 'reviews/'
+import { IReview } from '@Types/review.interface'
+
+import { instance } from '@api/api.interceptor'
+
+import { ReviewDto } from './dto/review.dto'
 
 class ReviewService {
 	async getAll() {
@@ -12,11 +14,18 @@ class ReviewService {
 		})
 	}
 
-	async leave(productId: string | number, dto: ReviewDto) {
+	async leave(productId: string | number, data: ReviewDto) {
 		return instance<IReview>({
-			url: REVIEWS + `leave/${productId}`,
+			url: REVIEWS + `/leave/${productId}`,
 			method: 'post',
-			data: dto
+			data
+		})
+	}
+
+	async delete(reviewId: number) {
+		return instance<IReview>({
+			url: REVIEWS + `/${reviewId}`,
+			method: 'delete'
 		})
 	}
 }

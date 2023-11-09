@@ -1,8 +1,4 @@
-import { IUser } from '@/types/user.interface'
-
-export interface IUserState {
-	email: string
-}
+import { IUser } from '@Types/user.interface'
 
 export interface ITokens {
 	accessToken: string
@@ -10,7 +6,7 @@ export interface ITokens {
 }
 
 export interface IInitialState {
-	user: IUserState | null
+	user: IUser | null
 	isLoading: boolean
 	error: any
 }

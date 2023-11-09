@@ -1,10 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
+import { removeFromStorage } from '@services/auth/auth.helper'
+import authService from '@services/auth/auth.service'
+import { AUTH } from '@services/base.constant'
+
+import { errorCatch } from '@api/api.helper'
+
 import { IAuthResponse, IEmailPassword } from './user.interface'
-import { errorCatch } from '@/api/api.helper'
-import { removeFromStorage } from '@/services/auth/auth.helper'
-import authService from '@/services/auth/auth.service'
-import { AUTH } from '@/services/base.constant'
 
 export const registration = createAsyncThunk<IAuthResponse, IEmailPassword>(
 	`${AUTH}/register`,

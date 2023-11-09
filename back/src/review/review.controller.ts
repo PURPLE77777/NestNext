@@ -1,6 +1,7 @@
 import {
 	Body,
 	Controller,
+	Delete,
 	Get,
 	Param,
 	Post,
@@ -32,10 +33,9 @@ export class ReviewController {
 		return this.reviewService.create(id, +productId, dto)
 	}
 
-	// @Auth()
-	// @Get(':id')
-	// async delete(@Param('id') id: string) {
-	// 	console.warn(id)
-	// 	return this.reviewService.delete(+id)
-	// }
+	@Auth()
+	@Delete(':id')
+	async delete(@Param('id') id: string) {
+		return this.reviewService.delete(+id)
+	}
 }

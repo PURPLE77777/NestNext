@@ -3,7 +3,7 @@ import { FC, PropsWithChildren } from 'react'
 import Header from '../header/Header'
 import Menu from '../menu/Menu'
 
-const Main: FC<PropsWithChildren> = ({ children }) => {
+const MainPage: FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<div className='flex h-[100vh] flex-col'>
 			<Header />
@@ -15,4 +15,4 @@ const Main: FC<PropsWithChildren> = ({ children }) => {
 	)
 }
 
-export default Main
+export default MainPage

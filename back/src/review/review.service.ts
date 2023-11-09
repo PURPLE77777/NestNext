@@ -26,6 +26,7 @@ export class ReviewService {
 	}
 
 	async create(userId: number, productId: number, dto: ReviewDto) {
+		console.log('createReview', dto)
 		return this.prisma.review.create({
 			data: {
 				...dto,
@@ -39,6 +40,14 @@ export class ReviewService {
 						id: userId
 					}
 				}
+			}
+		})
+	}
+
+	async delete(id: number) {
+		return this.prisma.review.delete({
+			where: {
+				id
 			}
 		})
 	}

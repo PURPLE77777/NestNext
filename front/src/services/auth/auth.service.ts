@@ -1,12 +1,14 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
+import { IAuthResponse, IEmailPassword } from '@store/user/user.interface'
+
+import { instance } from '@api/api.interceptor'
+import { sleep } from '@api/sleep'
+
 import { AUTH } from '../base.constant'
 
 import { saveToStorage } from './auth.helper'
-import { instance } from '@/api/api.interceptor'
-import { sleep } from '@/api/sleep'
-import { IAuthResponse, IEmailPassword } from '@/store/user/user.interface'
 
 class AuthService {
 	async main(type: 'login' | 'register', data: IEmailPassword) {

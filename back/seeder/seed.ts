@@ -79,7 +79,7 @@ const createProducts = async (quantity: number) => {
 
 async function main() {
 	console.log('Start seeding...')
-	await createProducts(10)
+	await createProducts(20)
 }
 
 main()

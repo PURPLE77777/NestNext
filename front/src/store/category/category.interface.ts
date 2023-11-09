@@ -1,4 +1,4 @@
-import { ICategory } from '@/types/category.interface'
+import { ICategory } from '@Types/category.interface'
 
 export interface ICategoryResponse extends ICategory {}
 

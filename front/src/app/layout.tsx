@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
 import { FC, PropsWithChildren } from 'react'
 
+import App from '@components/App'
+
 import './globals.css'
-import App from '@/components/App'
 
 // import { Inter } from 'next/font/google'
 

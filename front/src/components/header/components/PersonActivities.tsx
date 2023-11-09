@@ -9,14 +9,16 @@ import {
 	MdOutlineShoppingCart
 } from 'react-icons/md'
 
-import { useAuth } from '@/hooks/selectors/useAuth'
-import { useActions } from '@/hooks/useActions'
-import Icon from '@/providers/Icon.provider'
-import { getAccessToken } from '@/services/auth/auth.helper'
-import userService from '@/services/user/user.service'
+import { getAccessToken } from '@services/auth/auth.helper'
+import userService from '@services/user/user.service'
+
+import { useAuth } from '@hooks/selectors/useAuth'
+import { useActions } from '@hooks/useActions'
+
+import Icon from '@ui/icon/Icon'
 
 const PersonActivities = () => {
-	const iconsDimensions = 25
+	const iconsDimensions = 35
 	const { user } = useAuth()
 	const { checkAuth, logout } = useActions()
 
@@ -62,8 +64,8 @@ const PersonActivities = () => {
 				<Icon size={`${iconsDimensions}px`}>
 					<BiHeart />
 				</Icon>
-				{data && (
-					<span className='absolute right-2 top-1 bg-[red]'>
+				{data && data.length > 0 && (
+					<span className='absolute right-1 top-[25px] flex h-[20px] w-[20px] items-center justify-center rounded-full bg-[red] text-[13px] font-bold'>
 						{data.length}
 					</span>
 				)}
@@ -84,12 +86,17 @@ const PersonActivities = () => {
 					<MdOutlineNotificationsNone />
 				</Icon>
 			</div>
-			<div className='ml-3 cursor-pointer' onClick={handleClick}>
+			<div
+				className='ml-3 cursor-pointer overflow-hidden rounded-full'
+				onClick={handleClick}
+			>
 				<Image
-					src={'/avatar.svg'}
-					alt='profile'
+					className='flex items-center justify-center'
+					src={user ? user.avatarPath : '/avatar.svg'}
+					alt='AVATAR'
 					width={iconsDimensions * 2}
 					height={iconsDimensions * 2}
+					unoptimized
 				/>
 			</div>
 		</div>

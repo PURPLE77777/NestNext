@@ -1,4 +1,4 @@
 export interface ReviewDto {
-	rating: number
+	rating?: number
 	text: string
 }

@@ -1,11 +1,15 @@
 // 'use client'
-import Catalog from '@/components/catalog/Catalog'
-import Main from '@/components/main/Main'
+import { FC, PropsWithChildren } from 'react'
 
-export default function Home() {
+import Catalog from '@components/catalog/Catalog'
+import MainPage from '@components/main/Main'
+
+const Page: FC<PropsWithChildren> = () => {
 	return (
-		<Main>
+		<MainPage>
 			<Catalog />
-		</Main>
+		</MainPage>
 	)
 }
+
+export default Page

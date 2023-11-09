@@ -1,11 +1,12 @@
-import { CATEGORIES } from '../base.constant'
+import { ICategory } from '@Types/category.interface'
 
-import { instance } from '@/api/api.interceptor'
-import { ICategory } from '@/types/category.interface'
+import { instance } from '@api/api.interceptor'
+
+import { CATEGORIES } from '../base.constant'
 
 class CategoryService {
 	async getAll() {
-		return await instance<ICategory[]>({
+		return instance<ICategory[]>({
 			url: CATEGORIES,
 			method: 'get'
 		})

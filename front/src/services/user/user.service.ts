@@ -1,7 +1,9 @@
+import { IProduct } from '@Types/product.interface'
+import { IUser } from '@Types/user.interface'
+
+import { instance } from '@api/api.interceptor'
+
 import { IUserDto } from './dto/user.dto'
-import { instance } from '@/api/api.interceptor'
-import { IProduct } from '@/types/product.interface'
-import { IUser } from '@/types/user.interface'
 
 const USERS = 'users/'
 
@@ -30,7 +32,7 @@ class UserService {
 
 	async toggleFavourite(productId: string | number) {
 		return instance<IUser>({
-			url: USERS + `profile.favourites/${productId}`,
+			url: USERS + `favourites/${productId}`,
 			method: 'patch'
 		})
 	}

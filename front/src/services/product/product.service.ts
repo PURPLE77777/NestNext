@@ -1,8 +1,10 @@
-import { IFiltersDto, IProductDto } from './dto/product.dto'
-import { instance } from '@/api/api.interceptor'
-import { IProduct } from '@/types/product.interface'
+import { IProduct } from '@Types/product.interface'
 
-const PRODUCTS = 'products/'
+import { instance } from '@api/api.interceptor'
+
+import { PRODUCTS } from '../base.constant'
+
+import { IFiltersDto, IProductDto } from './dto/product.dto'
 
 class ProductService {
 	async getAll(queryData = {} as IFiltersDto) {
@@ -15,28 +17,28 @@ class ProductService {
 
 	async getSimilar(productId: string | number) {
 		return instance<IProduct[]>({
-			url: PRODUCTS + `similat/${productId}`,
+			url: PRODUCTS + `/similat/${productId}`,
 			method: 'get'
 		})
 	}
 
 	async getBySlug(slug: string) {
 		return instance<IProduct[]>({
-			url: PRODUCTS + `by-slug/${slug}`,
+			url: PRODUCTS + `/by-slug/${slug}`,
 			method: 'get'
 		})
 	}
 
 	async getByCategory(categorySlug: string) {
 		return instance<IProduct[]>({
-			url: PRODUCTS + `by-category/${categorySlug}`,
+			url: PRODUCTS + `/by-category/${categorySlug}`,
 			method: 'get'
 		})
 	}
 
 	async getById(id: string | number) {
 		return instance<IProduct>({
-			url: PRODUCTS + `by-id/${id}`,
+			url: PRODUCTS + `/${id}`,
 			method: 'get'
 		})
 	}
@@ -50,7 +52,7 @@ class ProductService {
 
 	async update(id: string | number, dto: IProductDto) {
 		return instance<IProduct>({
-			url: PRODUCTS + id,
+			url: PRODUCTS + `/${id}`,
 			method: 'put',
 			data: dto
 		})
@@ -58,7 +60,7 @@ class ProductService {
 
 	async delete(id: string | number) {
 		return instance<IProduct>({
-			url: PRODUCTS + id,
+			url: PRODUCTS + `/${id}`,
 			method: 'delete'
 		})
 	}

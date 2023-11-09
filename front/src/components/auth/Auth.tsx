@@ -6,11 +6,14 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
+import { validEmail } from '@constants/regexp.constant'
+
+import { useActions } from '@hooks/useActions'
+import { useTypedSelector } from '@hooks/useTypedSelector'
+
+import Loader from '@ui/loader/Loader'
+
 import { IAuth } from './auth.interface'
-import { validEmail } from '@/constants/regexp.constant'
-import { useActions } from '@/hooks/useActions'
-import { useTypedSelector } from '@/hooks/useTypedSelector'
-import Loader from '@/ui/loader/Loader'
 
 const Auth = () => {
 	const [isLogIn, setIsLogIn] = useState(true)

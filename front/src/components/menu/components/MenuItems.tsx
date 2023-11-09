@@ -3,11 +3,14 @@
 import clsx from 'clsx'
 import { SyntheticEvent, useEffect, useState } from 'react'
 
-import { IChapter, chapters } from '@/constants/categories.constant'
-import { useCategory } from '@/hooks/selectors/useCategory'
-import { useActions } from '@/hooks/useActions'
-import Icon from '@/providers/Icon.provider'
-import { ICategory } from '@/types/category.interface'
+import { IChapter, chapters } from '@constants/categories.constant'
+
+import { useCategory } from '@hooks/selectors/useCategory'
+import { useActions } from '@hooks/useActions'
+
+import { ICategory } from '@Types/category.interface'
+
+import Icon from '@ui/icon/Icon'
 
 export const MenuItems = () => {
 	const { categories } = useCategory()
@@ -30,7 +33,7 @@ export const MenuItems = () => {
 	const categoryHandler = (category: ICategory) => {
 		selectCategory(category)
 	}
-
+	console.log(categories)
 	return (
 		<div>
 			{allChapters.map(chapter => (

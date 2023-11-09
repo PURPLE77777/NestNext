@@ -1,5 +1,6 @@
+import { instance } from '@api/api.interceptor'
+
 import { IStatisticsDto } from './dto/statistics.dto'
-import { instance } from '@/api/api.interceptor'
 
 const STATISTICS = 'statistics/'
 

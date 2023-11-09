@@ -49,7 +49,8 @@ export class UserService {
 		})
 
 		if (!user) throw new NotFoundException('User not found')
-
+		console.log('userId', id)
+		console.log('favourites', user.favourites)
 		return user.favourites
 	}
 
@@ -86,7 +87,7 @@ export class UserService {
 
 		const isExists = user.favourites.some(product => product.id === productId)
 
-		await this.prisma.user.update({
+		const prod = await this.prisma.user.update({
 			where: {
 				id: user.id
 			},
@@ -98,6 +99,8 @@ export class UserService {
 				}
 			}
 		})
+
+		console.log(prod)
 
 		return { message: 'Success' }
 	}

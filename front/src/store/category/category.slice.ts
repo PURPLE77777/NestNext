@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+import { ICategory } from '@Types/category.interface'
+
 import { getAllCategories } from './category.actions'
 import { IInitialState } from './category.interface'
-import { ICategory } from '@/types/category.interface'
 
 const initialState: IInitialState = {
 	categories: null,

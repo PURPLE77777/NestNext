@@ -1,10 +1,11 @@
-import { IsNumber, Min, Max, IsString } from 'class-validator'
+import { IsNumber, IsOptional, IsString, Max, Min } from 'class-validator'
 
 export class ReviewDto {
+	@IsOptional()
 	@IsNumber()
 	@Min(1)
 	@Max(5)
-	rating: number
+	rating?: number
 
 	@IsString()
 	text: string

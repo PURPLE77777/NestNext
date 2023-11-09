@@ -5,8 +5,7 @@ import { errorCatch, getContentType } from './api.helper'
 
 export const instance = axios.create({
 	baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
-	headers: getContentType(),
-	timeout: 5000
+	headers: getContentType()
 })
 
 instance.interceptors.request.use(config => {

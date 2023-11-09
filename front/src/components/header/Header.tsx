@@ -4,10 +4,12 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { IoSearch } from 'react-icons/io5'
 
+import { useCategory } from '@hooks/selectors/useCategory'
+import { useActions } from '@hooks/useActions'
+
+import Icon from '@ui/icon/Icon'
+
 import PersonActivities from './components/PersonActivities'
-import { useCategory } from '@/hooks/selectors/useCategory'
-import { useActions } from '@/hooks/useActions'
-import Icon from '@/providers/Icon.provider'
 
 const Header = () => {
 	const [value, setValue] = useState<string>('')

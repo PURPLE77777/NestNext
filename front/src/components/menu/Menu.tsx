@@ -3,10 +3,12 @@
 import { useRouter } from 'next/navigation'
 import { MdLogout } from 'react-icons/md'
 
+import { useAuth } from '@hooks/selectors/useAuth'
+import { useActions } from '@hooks/useActions'
+
+import Icon from '@ui/icon/Icon'
+
 import { MenuItems } from './components/MenuItems'
-import { useAuth } from '@/hooks/selectors/useAuth'
-import { useActions } from '@/hooks/useActions'
-import Icon from '@/providers/Icon.provider'
 
 const Menu = () => {
 	const { user } = useAuth()
